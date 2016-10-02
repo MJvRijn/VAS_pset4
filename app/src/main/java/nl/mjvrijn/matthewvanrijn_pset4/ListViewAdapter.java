@@ -33,7 +33,7 @@ public class ListViewAdapter extends ArrayAdapter<ToDoTask> {
         // Set the task text
         textView.setText(getItem(position).getTask());
 
-        // Set the check mark and text colour based on whether the task has been completed.
+        // Set the tick and text colour based on whether the task has been completed.
         if(getItem(position).isDone()) {
             textView.setTextColor(getContext().getResources().getColor(R.color.textDone));
             checkMark.setVisibility(View.VISIBLE);
