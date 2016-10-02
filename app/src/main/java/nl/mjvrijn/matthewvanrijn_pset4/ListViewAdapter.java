@@ -10,16 +10,19 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+/* This adapter connects the ListView with the data set. */
 public class ListViewAdapter extends ArrayAdapter<ToDoTask> {
 
     public ListViewAdapter(Context context, int textViewID, ArrayList<ToDoTask> data) {
         super(context, textViewID, data);
     }
 
+    /* Inflate the display elements of a single entry of the ListView. */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
+        // Use convertView to recycle old views instead of creating new ones
         if(convertView == null) {
             convertView = inflater.inflate(R.layout.content_list_entry, parent, false);
         }
@@ -27,8 +30,10 @@ public class ListViewAdapter extends ArrayAdapter<ToDoTask> {
         TextView textView = (TextView) convertView.findViewById(R.id.list_entry_textview);
         ImageView checkMark = (ImageView) convertView.findViewById(R.id.list_entry_check);
 
+        // Set the task text
         textView.setText(getItem(position).getTask());
 
+        // Set the check mark and text colour based on whether the task has been completed.
         if(getItem(position).isDone()) {
             textView.setTextColor(getContext().getResources().getColor(R.color.textDone));
             checkMark.setVisibility(View.VISIBLE);
